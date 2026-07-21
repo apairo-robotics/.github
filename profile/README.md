@@ -3,9 +3,11 @@
 
   **One numpy-in / numpy-out API for robotics sensor datasets.**
 
-  [Documentation](https://apairo-robotics.github.io/apairo/) ·
-  [Core repo](https://github.com/apairo-robotics/apairo) ·
-  [Bring your own dataset](https://apairo-robotics.github.io/apairo/datasets/bring-your-own-dataset/)
+  [![Documentation](https://img.shields.io/badge/docs-apairo--robotics.github.io-2ea44f)](https://apairo-robotics.github.io/apairo/)
+  [![PyPI](https://img.shields.io/pypi/v/apairo?logo=pypi&logoColor=white&color=3775A9)](https://pypi.org/project/apairo/)
+  ![Python](https://img.shields.io/badge/python-%E2%89%A5%203.11-3776AB?logo=python&logoColor=white)
+  ![NumPy](https://img.shields.io/badge/built%20on-NumPy-013243?logo=numpy&logoColor=white)
+  ![License](https://img.shields.io/badge/license-MIT-2ea44f)
 </div>
 
 ---
@@ -58,7 +60,6 @@ never writing into your data. See
 | **[apairo_extractor](https://github.com/apairo-robotics/apairo_extractor)** | Turn ROS bags into the apairo / KITTI on-disk layout, with optional preprocessing. |
 | **[apairo_rr](https://github.com/apairo-robotics/apairo_rr)** | Rerun-based lidar / multi-sensor visualization of apairo datasets. |
 | **[apairo_huggingface](https://github.com/apairo-robotics/apairo_huggingface)** | Label apairo datasets and export them to the HuggingFace `LeRobotDataset` format. |
-| **[apairo_mnt](https://github.com/apairo-robotics/apairo_mnt)** | The AMIAD MNT dataset and its on-disk layout (zarr missions). |
 
 ---
 
@@ -69,6 +70,6 @@ pip install apairo          # Python >= 3.11
 pip install apairo[vision]  # optional: image loading (Pillow)
 ```
 
-- 📖 **[Documentation](https://apairo-robotics.github.io/apairo/)** — quickstart, the `.apairo` schema, synchronizing async sensors, preprocessing.
-- 🧩 **[Bring your own dataset](https://apairo-robotics.github.io/apairo/datasets/bring-your-own-dataset/)** — YAML profiles, thin subclasses, filename-encoded keys.
-- 🛠 **[apairo-robotics/apairo](https://github.com/apairo-robotics/apairo)** — source, issues, contributing.
+- **[Documentation](https://apairo-robotics.github.io/apairo/)** — quickstart, the `.apairo` schema, synchronizing async sensors, preprocessing.
+- **[Bring your own dataset](https://apairo-robotics.github.io/apairo/datasets/bring-your-own-dataset/)** — YAML profiles, thin subclasses, filename-encoded keys.
+- **[apairo-robotics/apairo](https://github.com/apairo-robotics/apairo)** — source, issues, contributing.
