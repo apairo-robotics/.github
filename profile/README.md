@@ -3,7 +3,8 @@
 
   **One numpy-in / numpy-out API for robotics sensor datasets.**
 
-  [![Documentation](https://img.shields.io/badge/docs-apairo--robotics.github.io-2ea44f)](https://apairo-robotics.github.io/apairo/)
+  [![Website](https://img.shields.io/badge/website-apairo--robotics.github.io-1f6feb?logo=github&logoColor=white)](https://apairo-robotics.github.io/)
+  [![Docs](https://img.shields.io/badge/docs-apairo-2ea44f)](https://apairo-robotics.github.io/apairo/)
   [![PyPI](https://img.shields.io/pypi/v/apairo?logo=pypi&logoColor=white&color=3775A9)](https://pypi.org/project/apairo/)
   ![Python](https://img.shields.io/badge/python-%E2%89%A5%203.11-3776AB?logo=python&logoColor=white)
   ![NumPy](https://img.shields.io/badge/built%20on-NumPy-013243?logo=numpy&logoColor=white)
