@@ -1,5 +1,8 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/apairo-robotics/apairo/main/docs/resources/apairo_logo_full.png" alt="apairo" width="380">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/apairo-robotics/apairo/main/docs/resources/logo/apairo_logo_full_on_dark.png">
+    <img src="https://raw.githubusercontent.com/apairo-robotics/apairo/main/docs/resources/apairo_logo_full.png" alt="apairo" width="380">
+  </picture>
 
   **One numpy-in / numpy-out API for robotics sensor datasets.**
 
@@ -16,11 +19,11 @@
 ## What is apairo?
 
 **apairo** is a unified loader for robotics sensor datasets — lidar, cameras,
-poses, IMU, labels — with one chainable API across **synchronous** (KITTI-style)
-and **asynchronous** (multi-rate) layouts. No bespoke `glob + np.load` loaders,
-no hand-written timestamp matching: everything is a dataset you `filter`,
-`select`, `cache`, `synchronize`, `concat` and feed straight to a PyTorch
-`DataLoader`.
+poses, IMU, labels — with one chainable API across **synchronous** (every
+sensor at every frame) and **asynchronous** (multi-rate) layouts. No bespoke
+`glob + np.load` loaders, no hand-written timestamp matching: everything is a
+dataset you `filter`, `select`, `cache`, `synchronize`, `concat` and feed
+straight to a PyTorch `DataLoader`.
 
 - **numpy in, numpy out** — `ds[i].data["lidar"] -> np.ndarray`; convert to
   torch/tf at the edge, never inside the dataset.
@@ -53,22 +56,28 @@ never writing into your data. See
 > Mechanisms live in the **core**; collections live in **satellites**. The core
 > never gains a dependency beyond numpy + PyYAML.
 
-| Repo | What it does |
-|---|---|
-| **[apairo](https://github.com/apairo-robotics/apairo)** | The core — load / synchronize / filter / cache / preprocess robotics datasets, one API for sync + async layouts. |
-| **[apairo_transform](https://github.com/apairo-robotics/apairo_transform)** | Access-time numpy transforms & augmentations (range/box filters, voxelization, rotations, interpolators). |
-| **[apairo_preprocess](https://github.com/apairo-robotics/apairo_preprocess)** | Heavy offline preprocessors, persisted as derived `.apairo` channels and reloaded transparently. |
-| **[apairo_extractor](https://github.com/apairo-robotics/apairo_extractor)** | Turn ROS bags into the apairo / KITTI on-disk layout, with optional preprocessing. |
-| **[apairo_rr](https://github.com/apairo-robotics/apairo_rr)** | Rerun-based lidar / multi-sensor visualization of apairo datasets. |
-| **[apairo_huggingface](https://github.com/apairo-robotics/apairo_huggingface)** | Label apairo datasets and export them to the HuggingFace `LeRobotDataset` format. |
+| Repo | Role | What it does |
+|---|---|---|
+| **[apairo](https://github.com/apairo-robotics/apairo)** | Core | Profile, load, synchronize, filter, cache and preprocess robotics datasets — one API for sync + async layouts. Adds the `apairo` command. |
+| **[apairo_extractor](https://github.com/apairo-robotics/apairo_extractor)** | Ingest | Turn ROS bags (ROS 1, ROS 2, MCAP) into an apairo dataset, from an interactive TUI or headless. Adds `apairo extractor`. |
+| **[apairo_transform](https://github.com/apairo-robotics/apairo_transform)** | Runtime | Transforms and augmentations applied lazily at access time — range/box filters, voxelization, rotations, interpolators for `synchronize()`. |
+| **[apairo_preprocess](https://github.com/apairo-robotics/apairo_preprocess)** | Offline | Pipelines that compute a derived channel once — odometry, ground segmentation, traversability, projections — persisted in `.apairo` and reloaded transparently. |
+| **[apairo_visu](https://github.com/apairo-robotics/apairo_visu)** | Visualise | Look at any dataset in a browser Studio, an Open3D viewer or Rerun. Adds `apairo studio`, `apairo visu` and `apairo rerun`. |
+
+Around them: **[apairo_benchmarks](https://github.com/apairo-robotics/apairo_benchmarks)**
+measures apairo against a hand-rolled loader, and
+**[apairo_huggingface](https://github.com/apairo-robotics/apairo_huggingface)**
+is the worked example of the whole stack, from TartanDrive rosbags to a
+`LeRobotDataset` on the Hugging Face Hub.
 
 ---
 
 ## Getting started
 
 ```bash
-pip install apairo          # Python >= 3.11
-pip install apairo[vision]  # optional: image loading (Pillow)
+pip install apairo            # Python >= 3.11
+pip install "apairo[tartan]"  # a standard dataset: also rellis, goose, semantic-kitti, tum, euroc, kuka
+apairo status /data/mission   # profile a folder before writing any code
 ```
 
 - **[Documentation](https://apairo-robotics.github.io/apairo/)** — quickstart, the `.apairo` schema, synchronizing async sensors, preprocessing.
